@@ -1,0 +1,16 @@
+<p>
+  add-contact-dialog works!
+</p>
+<ol>
+    <li>
+      <mat-form-field>
+        <input matInput [(ngModel)]="sender_id" placeholder="Enter the sender id.">
+      </mat-form-field>
+    </li>
+    <li>
+      <button mat-raised-button color="primary" matBadge="+" (click)="openDialog()">Add Contact</button>
+    </li>
+    <li *ngIf="contact">
+      You added: <i>{{contact.display_name}}</i>
+    </li>
+  </ol>

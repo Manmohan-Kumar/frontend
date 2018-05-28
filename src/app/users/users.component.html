@@ -1,0 +1,8 @@
+<p>
+  Contacts
+</p>
+<ul>
+  <li *ngFor = "let contact of contactList" >
+    <span class="badge">{{contact.display_name}}</span> {{contact.country_phone_code}}-{{contact.phone_number}}
+  </li>
+</ul>
