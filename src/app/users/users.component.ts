@@ -14,6 +14,7 @@ export class UsersComponent implements OnInit {
 
   contactList: Contact[];
   contactListSubs: Subscription;
+  selectedContact: Contact;
 
   ngOnInit() {
     this.getContactList();
@@ -22,6 +23,11 @@ export class UsersComponent implements OnInit {
   getContactList() {
     this.contactListSubs = this.contactService.getContacts(4).
     subscribe(res => { this.contactList = res; }, console.error);
+  }
+
+  onSelect(contact: Contact):void{
+    this.selectedContact = contact;
+    console.log(contact.display_name);
   }
 
 }

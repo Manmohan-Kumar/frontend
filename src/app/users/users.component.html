@@ -1,8 +1,27 @@
 <p>
   Contacts
 </p>
-<ul>
+<!-- <ul>
   <li *ngFor = "let contact of contactList" >
     <span class="badge">{{contact.display_name}}</span> {{contact.country_phone_code}}-{{contact.phone_number}}
   </li>
-</ul>
+</ul> -->
+<mat-list>
+  <a mat-list-item *ngFor="let contact of contactList" role="navigation">
+      
+      <mat-icon mat-list-icon>message</mat-icon>
+      <h4 mat-line>{{contact.display_name}}</h4>
+      <p mat-line> {{contact.country_phone_code}}-{{contact.phone_number}} </p>      
+      
+  </a >
+</mat-list>
+
+<mat-nav-list>
+    <mat-list-item *ngFor="let contact of contactList">
+       <a matLine (click)="onSelect(contact)" >{{ contact.display_name }}</a>
+       <a matLine (click)="onSelect(contact)" >{{contact.country_phone_code}}-{{contact.phone_number}}</a>
+       <button mat-icon-button (click)="onSelect(contact)">
+          <mat-icon>message</mat-icon>
+       </button>
+    </mat-list-item>
+  </mat-nav-list>
