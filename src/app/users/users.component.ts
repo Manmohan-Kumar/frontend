@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, HostListener } from '@angular/core';
 import { ContactService } from '../service/contact.service';
 import { Contact } from './contact.model';
 import { Subscription } from 'rxjs';
@@ -15,19 +15,23 @@ export class UsersComponent implements OnInit {
   contactList: Contact[];
   contactListSubs: Subscription;
   selectedContact: Contact;
+  contact: Contact;
+  sender_id = '1';
 
   ngOnInit() {
     this.getContactList();
+    this.contactService.cast.subscribe(contact=> this.contact = contact);    
   }
 
   getContactList() {
-    this.contactListSubs = this.contactService.getContacts(4).
+    this.contactListSubs = this.contactService.getContacts(this.sender_id).
     subscribe(res => { this.contactList = res; }, console.error);
   }
-
+  
   onSelect(contact: Contact):void{
     this.selectedContact = contact;
-    console.log(contact.display_name);
+    this.contactService.selectedContact(contact);
+    // console.log(contact.display_name);
   }
 
 }

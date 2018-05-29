@@ -11,3 +11,16 @@
     </mat-list-item>
     <mat-divider></mat-divider>
 </mat-list>
+<form class="send-button-form">
+    <mat-form-field class="send-button-full-width">
+        <input matInput #message maxlength="256" placeholder="I'd like to talk about ...">
+        <mat-hint align="end">{{message.value.length}} / 256</mat-hint>
+    </mat-form-field>
+    <button mat-icon-button>
+        <mat-icon align="end" aria-label="Send Message" (click)="sendMessage(message,contact)">send</mat-icon>
+    </button>
+
+    {{message.value}}
+</form>
+
+{{contact.user_id}}
