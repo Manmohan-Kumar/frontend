@@ -10,6 +10,8 @@
   
 .chat-card {
   max-width: 400px;
+  margin-left: 0;
+  margin-right: 0;
   }
   
   ::ng-deep .mat-list .mat-list-item .mat-line{
