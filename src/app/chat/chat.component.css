@@ -8,3 +8,19 @@
     width: 90%;
   }
   
+.chat-card {
+  max-width: 400px;
+  }
+  
+  ::ng-deep .mat-list .mat-list-item .mat-line{
+        word-wrap: break-word;
+      white-space: pre-wrap;
+  }
+
+  .mat-line-right {
+    padding-right:16px
+  }
+
+  .mat-icon-right{
+    padding:4px
+  }

@@ -6,3 +6,7 @@
     background-color: rgb(116, 90, 150) !important;
     color: white;
   }
+
+  .contact-card {
+    max-width: 250px;
+    }

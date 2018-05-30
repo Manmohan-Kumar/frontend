@@ -1,4 +1,4 @@
-<p>
+<!-- <p>
   add-contact-dialog works!
 </p>
 <ol>
@@ -13,4 +13,12 @@
     <li *ngIf="contact">
       You added: <i>{{contact.display_name}}</i>
     </li>
-  </ol>
+  </ol> -->
+
+  <button (click)="openDialog()"  mat-button><mat-icon >person_add</mat-icon></button>
+      
+  
+    
+    <li *ngIf="contact">
+      You added: <i>{{contact.display_name}}</i>
+      </li>

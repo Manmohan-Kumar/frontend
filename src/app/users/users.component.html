@@ -15,14 +15,22 @@
       
   </mat-list-item >
 </mat-list> -->
-
-<mat-nav-list>
-    <mat-list-item *ngFor="let contact of contactList" [class.selected]="contact === selectedContact">
-       <a matLine (click)="onSelect(contact)" >{{ contact.display_name }}</a>
-       <a matLine (click)="onSelect(contact)" >{{contact.country_phone_code}}-{{contact.phone_number}}</a>
-       <button mat-icon-button (click)="onSelect(contact)">
+<mat-card class="contact-card">
+    <mat-card-header>
+        <h3><mat-icon>contact_mail</mat-icon> Contacts</h3>
+        <div style="float: right;margin: 0 0 0 auto;"><app-add-contact-dialog>...</app-add-contact-dialog></div>
+</mat-card-header>
+<mat-divider></mat-divider>
+  <mat-card-content>
+    <mat-nav-list>
+      <mat-list-item *ngFor="let contact of contactList" [class.selected]="contact === selectedContact">
+        <a matLine (click)="onSelect(contact)">{{ contact.display_name }}</a>
+        <a matLine (click)="onSelect(contact)">{{contact.country_phone_code}}-{{contact.phone_number}}</a>
+        <button mat-icon-button (click)="onSelect(contact)">
           <mat-icon>message</mat-icon>
-       </button>
-    </mat-list-item>
-  </mat-nav-list>
-  <!-- <app-chat [contact]="selectedContact">loading ...</app-chat> -->
+        </button>
+      </mat-list-item>
+    </mat-nav-list>
+  </mat-card-content>
+</mat-card>
+<!-- <app-chat [contact]="selectedContact">loading ...</app-chat> -->

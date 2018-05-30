@@ -16,7 +16,7 @@ export class UsersComponent implements OnInit {
   contactListSubs: Subscription;
   selectedContact: Contact;
   contact: Contact;
-  sender_id = '1';
+  sender_id = '4';
 
   ngOnInit() {
     this.getContactList();

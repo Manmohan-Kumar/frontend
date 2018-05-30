@@ -15,3 +15,14 @@ body {
   font-size: 8pt;
   float: right;
 }
+
+  /* RIGHT align */
+  .mat-list .mat-list-item.right .mat-list-text>*{
+    margin: 0 0 0 auto;
+  }
+
+  .row:after {
+    content: "";
+    display: table;
+    clear: both;
+}

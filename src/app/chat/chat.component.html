@@ -1,26 +1,33 @@
-<p>
-    conversations works!
-</p>
-<mat-list>
-    <h3 mat-subheader>Messages</h3>
-    <mat-list-item *ngFor="let message of messageList;" style="margin-top: 8px; margin-bottom: 8px;">
-        <mat-icon mat-list-icon>person</mat-icon>
-        <h4 mat-line>{{message.message}}</h4>
-        <p mat-line class="demo-2"> {{message.create_date | date}} </p>        
-        <mat-divider [inset]="true" *ngIf="!last"></mat-divider>        
-    </mat-list-item>
+<mat-card class="chat-card">
+    <mat-card-header>
+            <h3><mat-icon>history</mat-icon> History</h3>
+    </mat-card-header>
     <mat-divider></mat-divider>
-</mat-list>
-<form class="send-button-form">
-    <mat-form-field class="send-button-full-width">
-        <input matInput #message maxlength="256" placeholder="I'd like to talk about ..." (keyup.enter)="sendMessage(message,contact)">
-        <mat-hint align="end">{{message.value.length}} / 256</mat-hint>
-    </mat-form-field>
-    <button mat-icon-button>
-        <mat-icon align="end" aria-label="Send Message" (click)="sendMessage(message,contact)">send</mat-icon>
-    </button>
+    <mat-card-content>
+        <mat-list>
+            <mat-list-item *ngFor="let message of messageList;" style="margin-top: 8px; margin-bottom: 8px;" [class.right]="sender_id != message.sender_id_fk">
+                <mat-icon mat-list-icon *ngIf="sender_id == message.sender_id_fk">person</mat-icon>
+                <mat-icon *ngIf="sender_id != message.sender_id_fk" class="mat-icon-right">person</mat-icon>
+                <h4 mat-line *ngIf="sender_id == message.sender_id_fk">
+                    <b>You:</b> {{message.message}}</h4>
+                <h4 mat-line *ngIf="sender_id != message.sender_id_fk" class="mat-line-right">
+                    <b>{{contact.display_name}}:</b> {{message.message}}</h4>
+                <p mat-line class="demo-2"> {{message.create_date | date}} </p>
+                <mat-divider [inset]="true" *ngIf="!last"></mat-divider>
+            </mat-list-item>
+            <mat-divider></mat-divider>
+        </mat-list>
+    </mat-card-content>
 
-    {{message.value}}
-</form>
-
-{{contact.user_id}}
+    <mat-card-actions>
+        <form class="send-button-form">
+            <mat-form-field class="send-button-full-width">
+                <input matInput #message maxlength="256" placeholder="I'd like to talk about ..." (keyup.enter)="sendMessage(message,contact)">
+                <mat-hint align="end">{{message.value.length}} / 256</mat-hint>
+            </mat-form-field>
+            <button mat-icon-button>
+                <mat-icon align="end" aria-label="Send Message" (click)="sendMessage(message,contact)">send</mat-icon>
+            </button>
+        </form>
+    </mat-card-actions>
+</mat-card>

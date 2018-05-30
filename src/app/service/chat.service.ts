@@ -33,5 +33,4 @@ export class ChatService {
       console.log(body);
     return this.httpClient.post<any>(`${API_URL}/send-message`, body, this.httpOptions);
   }
-
 }

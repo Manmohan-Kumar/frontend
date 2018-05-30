@@ -17,7 +17,7 @@ export class ChatComponent implements OnInit {
   messageList: Chat[];
   messageListSubs: Subscription;
   old_contact: Contact;
-  sender_id = '1';
+  sender_id = '4';  
 
   ngOnInit() {
     this.contactService.cast.subscribe(contact=> this.contact = contact);
@@ -35,7 +35,7 @@ export class ChatComponent implements OnInit {
     
       let receiver_id = this.contact.user_id==undefined?'1':this.contact.user_id;
       this.messageListSubs = this.chatService.getChatHistory(this.sender_id, receiver_id).
-      subscribe(res => { this.messageList = res; }, console.error);    
+      subscribe(res => { this.messageList = res; console.log(res)}, console.error);    
   }
 
   sendMessage(message,contact){
@@ -43,6 +43,9 @@ export class ChatComponent implements OnInit {
     let receiver_id = contact.user_id;
     this.chatService.sendMessage(this.sender_id, receiver_id, contact.country_phone_code,
        contact.phone_number, message.value).subscribe(res => console.log(res), err => console.log(err));
+    let recentChat = new Chat(message.value,this.sender_id, receiver_id, '0', new Date());
     message.value = "";
+    this.messageList.push(recentChat);
+    console.log(recentChat.create_date);
   }
 }
