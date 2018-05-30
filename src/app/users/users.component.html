@@ -17,7 +17,7 @@
 </mat-list> -->
 
 <mat-nav-list>
-    <mat-list-item *ngFor="let contact of contactList">
+    <mat-list-item *ngFor="let contact of contactList" [class.selected]="contact === selectedContact">
        <a matLine (click)="onSelect(contact)" >{{ contact.display_name }}</a>
        <a matLine (click)="onSelect(contact)" >{{contact.country_phone_code}}-{{contact.phone_number}}</a>
        <button mat-icon-button (click)="onSelect(contact)">

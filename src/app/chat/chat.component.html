@@ -6,14 +6,14 @@
     <mat-list-item *ngFor="let message of messageList;" style="margin-top: 8px; margin-bottom: 8px;">
         <mat-icon mat-list-icon>person</mat-icon>
         <h4 mat-line>{{message.message}}</h4>
-        <p mat-line class="demo-2"> {{message.create_date | date}} </p>
-        <mat-divider [inset]="true" *ngIf="!last"></mat-divider>
+        <p mat-line class="demo-2"> {{message.create_date | date}} </p>        
+        <mat-divider [inset]="true" *ngIf="!last"></mat-divider>        
     </mat-list-item>
     <mat-divider></mat-divider>
 </mat-list>
 <form class="send-button-form">
     <mat-form-field class="send-button-full-width">
-        <input matInput #message maxlength="256" placeholder="I'd like to talk about ...">
+        <input matInput #message maxlength="256" placeholder="I'd like to talk about ..." (keyup.enter)="sendMessage(message,contact)">
         <mat-hint align="end">{{message.value.length}} / 256</mat-hint>
     </mat-form-field>
     <button mat-icon-button>

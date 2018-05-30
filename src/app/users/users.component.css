@@ -1,3 +1,8 @@
 .mat-list-icon {
     color: rgba(0, 0, 0, 0.54);
   }
+
+  .selected {
+    background-color: rgb(116, 90, 150) !important;
+    color: white;
+  }
