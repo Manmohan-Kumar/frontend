@@ -1,22 +1,25 @@
 <mat-card class="chat-card">
     <mat-card-header>
             <h3><mat-icon>history</mat-icon> History</h3>
+            
     </mat-card-header>
     <mat-divider></mat-divider>
-    <mat-card-content>
-        <mat-list>
+    <mat-card-content [style.overflow]="'auto'" [style.height.px]="'300'">
+        <mat-list *ngIf="messageList?.length > 0">
             <mat-list-item *ngFor="let message of messageList;" style="margin-top: 8px; margin-bottom: 8px;" [class.right]="sender_id != message.sender_id_fk">
                 <mat-icon mat-list-icon *ngIf="sender_id == message.sender_id_fk">person</mat-icon>
                 <mat-icon *ngIf="sender_id != message.sender_id_fk" class="mat-icon-right">person</mat-icon>
-                <h4 mat-line *ngIf="sender_id == message.sender_id_fk">
+                <h4 mat-line *ngIf="sender_id == message.sender_id_fk" class="mat-line-left">
                     <b>You:</b> {{message.message}}</h4>
                 <h4 mat-line *ngIf="sender_id != message.sender_id_fk" class="mat-line-right">
                     <b>{{contact.display_name}}:</b> {{message.message}}</h4>
-                <p mat-line class="demo-2"> {{message.create_date | date}} </p>
+                <p mat-line *ngIf="sender_id == message.sender_id_fk" class="mat-line-left"> {{message.create_date | date}} </p>
+                <p mat-line *ngIf="sender_id != message.sender_id_fk"> {{message.create_date | date}} </p>
                 <mat-divider [inset]="true" *ngIf="!last"></mat-divider>
             </mat-list-item>
             <mat-divider></mat-divider>
         </mat-list>
+        <p *ngIf="messageList?.length == 0"> Please select a contact to see the conversation history.</p>
     </mat-card-content>
 
     <mat-card-actions>

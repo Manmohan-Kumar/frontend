@@ -1,6 +1,6 @@
 .send-button-form {
     min-width: 150px;
-    max-width: 500px;
+    /* max-width: 500px; */
     width: 100%;
   }
   
@@ -9,7 +9,8 @@
   }
   
 .chat-card {
-  max-width: 400px;
+  max-height: 465px;
+  width: 600px;
   margin-left: 0;
   margin-right: 0;
   }
@@ -22,7 +23,14 @@
   .mat-line-right {
     padding-right:16px
   }
+  .mat-line-left{
+    text-align: left;
+  }
+
+  .mat-icon-left{
+    text-align: left;
+  }
 
   .mat-icon-right{
-    padding:4px
+    padding:4px;
   }

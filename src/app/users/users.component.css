@@ -1,14 +1,18 @@
 .mat-list-icon {
-    color: rgba(0, 0, 0, 0.54);
-  }
+  color: rgba(0, 0, 0, 0.54);
+}
 
-  .selected {
-    background-color: rgb(116, 90, 150) !important;
-    color: white;
-  }
+.selected {
+  background-color: rgb(116, 90, 150) !important;
+  color: white;
+}
 
-  .contact-card {
-    max-width: 250px;
-    margin-left: 0;
-    margin-right: 0;
-    }
+.contact-card {
+  max-width: 465px;
+  margin-left: 0;
+  margin-right: 0;
+  margin-top: 0;
+}
+.mat-line-left{
+  text-align: left;
+}

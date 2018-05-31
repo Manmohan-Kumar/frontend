@@ -11,7 +11,8 @@ import { ContactService } from '../service/contact.service';
 })
 export class AddContactDialogComponent implements OnInit {
 
-  sender_id: string;
+  // sender_id: string;
+  sender_id= '4';
   status: string;
   //contact: Contact;
   contact: Map<string, string>;

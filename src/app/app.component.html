@@ -1,16 +1,23 @@
 <!--The content below is only a placeholder and can be replaced.-->
-<div class="row">
-  <div class="column"><app-users>loading ...</app-users></div>
-  <div class="column"><app-chat >loading ...</app-chat></div> 
+<div style="text-align:center">
+    <h1>
+      TeleSign {{ title }}!
+    </h1>  
+  </div>
+<div  class="row">
+  <div style="border:1px solid rgb(226, 220, 220); display:inline-block;"><app-users>loading ...</app-users></div>
+  <div style="border:1px solid rgb(226, 220, 220); display:inline-block;"><app-chat >loading ...</app-chat></div> 
 </div>
 <!-- <app-add-contact-dialog>...</app-add-contact-dialog> -->
-<div style="text-align:center">
-  <h1>
-    Welcome to {{ title }}!
-  </h1>  
-</div>
 
-<mat-grid-list cols="2" >
+
+<!-- <mat-grid-list cols="2" >
     <mat-grid-tile><app-users>loading ...</app-users></mat-grid-tile>
     <mat-grid-tile><app-chat >loading ...</app-chat></mat-grid-tile>
-</mat-grid-list>
+</mat-grid-list> -->
+
+<!-- <mat-card fxFlex fxLayoutAlign="start center" fxLayout="row" class="solution"  
+              [style.borderRadius.px]="'0'"  [style.paddingTop.px]="'60'">
+              <app-users>loading ...</app-users>
+              <app-chat >loading ...</app-chat>
+  </mat-card> -->
