@@ -11,14 +11,15 @@ import { ContactService } from '../service/contact.service';
 })
 export class AddContactDialogComponent implements OnInit {
 
-  // sender_id: string;
-  sender_id= '4';
+  sender_id: string;
+  //sender_id= '4';
   status: string;
   //contact: Contact;
   contact: Map<string, string>;
   constructor(public dialog: MatDialog, private contactService: ContactService) {}
 
   ngOnInit() {
+    this.contactService.user.subscribe(user => this.sender_id = user.user_id);
   }
 
   openDialog(): void {

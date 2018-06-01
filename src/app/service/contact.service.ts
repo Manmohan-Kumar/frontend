@@ -19,6 +19,9 @@ export class ContactService {
 
   private contactSubject = new BehaviorSubject<Contact>(new Contact());
   cast = this.contactSubject.asObservable();
+  // making logged in user as shared object
+  private loggedInUser = new BehaviorSubject<Contact>(new Contact());
+  user = this.loggedInUser.asObservable();
 
   constructor(private http: HttpClient) {
   }
@@ -27,9 +30,21 @@ export class ContactService {
     return Observable.throw(err.message || 'Error: Unable to complete request.');
   }
 
+  loginUser(sharedUser){
+    this.loggedInUser.next(sharedUser);
+    console.log(sharedUser);
+  }
+
   selectedContact(newContact){
     this.contactSubject.next(newContact);
     console.log(newContact);
+  }
+
+    
+  login(display_name: string, password: string): Observable<Contact> {        
+    let body = JSON.stringify({'display_name': display_name, 'password': password});
+    // console.log(body);
+    return this.http.post<Contact>(`${API_URL}/login`, body, this.httpOptions);
   }
 
   // GET list of public, future events
@@ -44,8 +59,15 @@ export class ContactService {
   addContact(contact: Map<string, string>): Observable<string> {
     // sender_id = 4;
     let body = JSON.stringify({contact});
+    // console.log(body);    
+    return this.http.post<string>(`${API_URL}/addContact`, body, this.httpOptions);
+  }
+
+  register(contact: Contact): Observable<string> {
+    // sender_id = 4;
+    let body = JSON.stringify({contact});
     // console.log(body);
     // const headers = new Headers({ 'Content-Type': 'application/json' });
-    return this.http.post<string>(`${API_URL}/addContact`, body, this.httpOptions);
+    return this.http.post<string>(`${API_URL}/register`, body, this.httpOptions);
   }
 }

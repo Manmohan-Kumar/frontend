@@ -1,0 +1,7 @@
+.row {
+    /* equal height of the children */
+    display: inline-flex;  
+    text-align:center;
+    width: 100%;
+    padding-left: 10%;
+  }

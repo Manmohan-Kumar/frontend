@@ -1,0 +1,66 @@
+<p>
+  register works!
+</p>
+<mat-card class="example-card">
+  <mat-card-header>
+    <mat-card-title>Registration</mat-card-title>
+  </mat-card-header>
+  <mat-card-content>
+    <form class="example-form">
+      <table class="example-full-width" cellspacing="0">
+        <tr>
+          <td>
+            <mat-form-field class="example-full-width">
+              <input matInput placeholder="Display Name" [(ngModel)]="contact.display_name" name="display_name" required>
+            </mat-form-field>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <mat-form-field class="example-full-width">
+              <input matInput placeholder="Country Phone Code" [(ngModel)]="contact.country_phone_code" name="country_phone_code" required>
+            </mat-form-field>
+          </td>
+          <td>
+            <mat-form-field class="example-full-width">
+              <input matInput placeholder="Phone Number" [(ngModel)]="contact.phone_number" name=".phone_number" required>
+            </mat-form-field>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <mat-form-field class="example-full-width">
+              <input matInput placeholder="Callback Url" [(ngModel)]="contact.callback_url" name="contact.callback_url" required>
+            </mat-form-field>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <mat-form-field class="example-full-width">
+              <input matInput placeholder="Telesign provided Customer Id" [(ngModel)]="contact.telesign_customer_id" name="telesign_customer_id" required>
+            </mat-form-field>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <mat-form-field class="example-full-width">
+              <input matInput placeholder="Telesign provided Api Key" [(ngModel)]="contact.telesign_api_key" name="telesign_api_key" required>
+            </mat-form-field>
+          </td>
+        </tr>        
+        <tr>
+          <td>
+            <mat-form-field class="example-full-width">
+              <input matInput placeholder="Password" [(ngModel)]="contact.password" type="password" name="password" required>
+            </mat-form-field>
+          </td>
+        </tr>
+      </table>
+    </form>
+    <mat-spinner [style.display]="showSpinner ? 'block' : 'none'"></mat-spinner>
+  </mat-card-content>
+  <mat-card-actions>
+    <button mat-raised-button (click)="register(contact)" color="primary">Register</button>
+    <button mat-raised-button [routerLink]="['/login']" color="primary">Cancel</button>
+  </mat-card-actions>  
+</mat-card>

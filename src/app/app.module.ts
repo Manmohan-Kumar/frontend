@@ -48,6 +48,10 @@ import { ChatComponent } from './chat/chat.component';
 import { UsersComponent } from './users/users.component';
 import {ContactService} from './service/contact.service';
 import { ChatService } from './service/chat.service';
+import { LoginComponent } from './login/login.component';
+import { AppRoutingModule } from './/app-routing.module';
+import { RegisterComponent } from './register/register.component';
+import { DashboardComponent } from './dashboard/dashboard.component';
 
 @NgModule({
   exports: [
@@ -87,9 +91,11 @@ import { ChatService } from './service/chat.service';
     MatToolbarModule,
     MatTooltipModule,
     MatTreeModule,
-  ]
+  ],
+  declarations: [],
+  imports: []
 })
-export class DemoMaterialModule {}
+export class MaterialModule {}
 
 @NgModule({
   declarations: [
@@ -98,15 +104,19 @@ export class DemoMaterialModule {}
     UsersComponent,
     AddContactDialogComponent,
     DialogOverview,
+    LoginComponent,
+    RegisterComponent,
+    DashboardComponent
   ],
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
     FormsModule,
     HttpClientModule,
-    DemoMaterialModule,
+    MaterialModule,
     MatNativeDateModule,
     ReactiveFormsModule,
+    AppRoutingModule,
   ],
   entryComponents: [DialogOverview, AddContactDialogComponent],
   bootstrap: [AppComponent],
