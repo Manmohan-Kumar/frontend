@@ -2,6 +2,10 @@ import { Component, OnInit, Inject } from '@angular/core';
 import {MatDialog, MatInputModule, MatFormFieldModule, MatFormField, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material';
 import { Contact } from '../users/contact.model';
 import { ContactService } from '../service/contact.service';
+import { AuthService } from '../service/auth.service';
+import { Router } from '@angular/router';
+import { isNullOrUndefined } from 'util';
+import { Subscription } from 'rxjs';
 
 
 @Component({
@@ -12,32 +16,42 @@ import { ContactService } from '../service/contact.service';
 export class AddContactDialogComponent implements OnInit {
 
   sender_id: string;
-  //sender_id= '4';
+  sender_name: string;
   status: string;
-  //contact: Contact;
   contact: Map<string, string>;
-  constructor(public dialog: MatDialog, private contactService: ContactService) {}
+  contactList: Contact[];
+  contactListSubs: Subscription;
+  constructor(public dialog: MatDialog, private contactService: ContactService, private authService: AuthService, private router: Router) {}
 
   ngOnInit() {
-    this.contactService.user.subscribe(user => this.sender_id = user.user_id);
+    this.authService.user.subscribe(user => {this.sender_id = user.user_id, this.sender_name = user.display_name; });
   }
 
   openDialog(): void {
     let dialogRef = this.dialog.open(DialogOverview, {
       width: '250px',
-      data: { sender_id: this.sender_id, contact: this.contact }
+      data: { sender_id: this.sender_id, sender_name: this.sender_name, contact: this.contact }
     });
 
     dialogRef.afterClosed().subscribe(result => {
       console.log('The dialog was closed', result);
-      this.contact = result;
-      this.addContact();
+      if (!isNullOrUndefined(result)) {
+        this.contact = result;
+        this.addContact();
+      }
+      //this.router.navigate(['./chat']);
+      this.getContactList();
     });
   }
 
   addContact() {
     this.contactService.addContact(this.contact).
-    subscribe(res => { this.status = res; }, console.error);
+    subscribe(res => { this.status = res; console.log(res); }, console.error);
+  }
+
+  getContactList() {
+    this.contactListSubs = this.contactService.getContacts(this.sender_id).
+      subscribe(res => { this.contactList = res; }, console.error);
   }
 }
 

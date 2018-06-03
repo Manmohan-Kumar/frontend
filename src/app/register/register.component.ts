@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ContactService } from '../service/contact.service';
 import { Contact } from '../users/contact.model';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-register',
@@ -9,19 +10,20 @@ import { Contact } from '../users/contact.model';
 })
 export class RegisterComponent implements OnInit {
 
-  constructor(private contactService: ContactService) { }
-  
-  status : string;
+  constructor(private router: Router, private contactService: ContactService) { }
+
+  status: string;
   contact = new Contact();
 
   ngOnInit() {
   }
 
-  register(contact){
+  register(contact) {
     console.log(contact);
     this.contactService.register(this.contact).
     subscribe(res => { this.status = res; }, console.error);
+    this.router.navigate(['./']);
     console.log(status);
-  } 
+  }
 
 }

@@ -6,7 +6,7 @@
     <mat-divider></mat-divider>
     <mat-card-content [style.overflow]="'auto'" [style.height.px]="'300'">
         <mat-list *ngIf="messageList?.length > 0">
-            <mat-list-item *ngFor="let message of messageList;" style="margin-top: 8px; margin-bottom: 8px;" [class.right]="sender_id != message.sender_id_fk">
+            <mat-list-item *ngFor="let message of messageList;" style="margin-top: 8px; margin-bottom: 8px;" [class.right]="sender_id != message.sender_id_fk" class="mat-elevation-z10">
                 <mat-icon mat-list-icon *ngIf="sender_id == message.sender_id_fk">person</mat-icon>
                 <mat-icon *ngIf="sender_id != message.sender_id_fk" class="mat-icon-right">person</mat-icon>
                 <h4 mat-line *ngIf="sender_id == message.sender_id_fk" class="mat-line-left">
@@ -16,13 +16,12 @@
                 <p mat-line *ngIf="sender_id == message.sender_id_fk" class="mat-line-left"> {{message.create_date | date}} </p>
                 <p mat-line *ngIf="sender_id != message.sender_id_fk"> {{message.create_date | date}} </p>
                 <mat-divider [inset]="true" *ngIf="!last"></mat-divider>
-            </mat-list-item>
-            <mat-divider></mat-divider>
+            </mat-list-item>            
         </mat-list>
         <p *ngIf="messageList?.length == 0"> Please select a contact to see the conversation history.</p>
     </mat-card-content>
-
-    <mat-card-actions>
+    <mat-divider></mat-divider>
+    <mat-card-actions>            
         <form class="send-button-form">
             <mat-form-field class="send-button-full-width">
                 <input matInput #message maxlength="256" placeholder="I'd like to talk about ..." (keyup.enter)="sendMessage(message,contact)">

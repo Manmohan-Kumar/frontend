@@ -1,15 +1,4 @@
-<mat-toolbar color="primary">
-    <mat-toolbar-row>
-      <span>TeleSign Conversations</span>
-      <span class="example-fill-remaining-space"></span>
-      <span class="align-center"></span>
-      <span class="example-spacer"></span>
-  
-      <button mat-button>About</button>
-      <button mat-button>Contact</button>
-    </mat-toolbar-row>
-  </mat-toolbar>
-
+  <app-header></app-header>
   <mat-card class="example-card">
       <mat-card-header>
         <mat-card-title>Login</mat-card-title>
@@ -37,3 +26,4 @@
         <button mat-raised-button [routerLink]="['/register']" color="primary">Register</button>
       </mat-card-actions>
     </mat-card>
+    <app-footer></app-footer>

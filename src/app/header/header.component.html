@@ -1,0 +1,13 @@
+<mat-toolbar color="primary" class="mat-elevation-z10">
+  <mat-toolbar-row>
+    <span>TeleSign Conversations</span>    
+    
+    <span class="example-spacer"></span>
+
+    <button mat-button>About</button>
+    <button mat-button>Contact Us</button>
+    <mat-slide-toggle color="accent" (change)="onChange($event)" [checked] = 'checked' [disabled]="disabled">
+        <p *ngIf="checked"> Log Out </p>
+      </mat-slide-toggle>
+  </mat-toolbar-row>
+</mat-toolbar>

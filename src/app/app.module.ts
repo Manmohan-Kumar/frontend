@@ -1,5 +1,5 @@
 import {CdkTableModule} from '@angular/cdk/table';
-import {HttpClientModule} from '@angular/common/http';
+import {HttpClientModule, HTTP_INTERCEPTORS} from '@angular/common/http';
 import {NgModule} from '@angular/core';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {
@@ -52,6 +52,10 @@ import { LoginComponent } from './login/login.component';
 import { AppRoutingModule } from './/app-routing.module';
 import { RegisterComponent } from './register/register.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
+import { AuthService } from './service/auth.service';
+import { AuthInterceptor } from './_guard/auth.interceptor';
+import { HeaderComponent } from './header/header.component';
+import { FooterComponent } from './footer/footer.component';
 
 @NgModule({
   exports: [
@@ -106,7 +110,9 @@ export class MaterialModule {}
     DialogOverview,
     LoginComponent,
     RegisterComponent,
-    DashboardComponent
+    DashboardComponent,
+    HeaderComponent,
+    FooterComponent
   ],
   imports: [
     BrowserModule,
@@ -120,7 +126,12 @@ export class MaterialModule {}
   ],
   entryComponents: [DialogOverview, AddContactDialogComponent],
   bootstrap: [AppComponent],
-  providers: [ContactService, ChatService]
+  providers: [ContactService, ChatService, AuthService,
+  {
+    provide: HTTP_INTERCEPTORS,
+    useClass: AuthInterceptor,
+    multi: true
+  }]
 })
 export class AppModule {}
 
