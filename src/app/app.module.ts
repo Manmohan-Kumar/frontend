@@ -56,6 +56,7 @@ import { AuthService } from './service/auth.service';
 import { AuthInterceptor } from './_guard/auth.interceptor';
 import { HeaderComponent } from './header/header.component';
 import { FooterComponent } from './footer/footer.component';
+import { CountryService } from './service/country.service';
 
 @NgModule({
   exports: [
@@ -126,7 +127,7 @@ export class MaterialModule {}
   ],
   entryComponents: [DialogOverview, AddContactDialogComponent],
   bootstrap: [AppComponent],
-  providers: [ContactService, ChatService, AuthService,
+  providers: [ContactService, ChatService,CountryService, AuthService,
   {
     provide: HTTP_INTERCEPTORS,
     useClass: AuthInterceptor,
