@@ -52,7 +52,7 @@ export class RegisterComponent implements OnInit {
     return this.countryList.filter(country => country.name.toLowerCase().indexOf(name.toLowerCase()) === 0);
   }
 
-  register() {    
+  register() {
     this.contact.country_phone_code = this.countryCtrl.value;
     console.log(this.contact);
     this.contactService.register(this.contact).

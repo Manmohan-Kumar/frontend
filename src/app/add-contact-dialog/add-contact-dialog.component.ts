@@ -28,7 +28,7 @@ export class AddContactDialogComponent implements OnInit {
   }
 
   openDialog(): void {
-    let dialogRef = this.dialog.open(DialogOverview, {
+    const dialogRef = this.dialog.open(DialogOverview, {
       width: '250px',
       data: { sender_id: this.sender_id, sender_name: this.sender_name, contact: this.contact }
     });
@@ -39,14 +39,13 @@ export class AddContactDialogComponent implements OnInit {
         this.contact = result;
         this.addContact();
       }
-      //this.router.navigate(['./chat']);
       this.getContactList();
     });
   }
 
   addContact() {
     this.contactService.addContact(this.contact).
-    subscribe(res => { this.status = res; console.log(res); }, console.error);
+    subscribe(res => { this.status = res; console.log(res); this.contactService.setAddedContact(res); }, console.error);
   }
 
   getContactList() {
@@ -68,5 +67,4 @@ export class DialogOverview {
   onNoClick(): void {
     this.dialogRef.close();
   }
-
 }

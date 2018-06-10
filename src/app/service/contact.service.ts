@@ -15,6 +15,9 @@ export class ContactService {
     })
   };
 
+  private newContactAdded = new BehaviorSubject<Contact>(new Contact());
+  addedContact = this.newContactAdded.asObservable();
+
   private contactSubject = new BehaviorSubject<Contact>(new Contact());
   cast = this.contactSubject.asObservable();
 
@@ -23,6 +26,17 @@ export class ContactService {
 
   private static _handleError(err: HttpErrorResponse | any) {
     return Observable.throw(err.message || 'Error: Unable to complete request.');
+  }
+  // setAdded contact from newly created contact
+  setAddedContact(createdContact) {
+    console.log(createdContact);
+    const contact = new Contact();
+    contact.user_id = createdContact.user_id;
+    contact.country_phone_code = createdContact.country_phone_code;
+    contact.phone_number = createdContact.phone_number;
+    contact.display_name = createdContact.display_name;
+    console.log(contact.user_id);
+    this.newContactAdded.next(contact);
   }
 
   selectedContact(newContact) {

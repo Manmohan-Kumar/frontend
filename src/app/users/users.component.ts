@@ -16,7 +16,7 @@ export class UsersComponent implements OnInit {
 
   constructor(private contactService: ContactService, private route: ActivatedRoute,
     private router: Router, private authService: AuthService) { }
-  contact$: Observable<Contact>;
+  // contact$: Observable<Contact>;
   contactList: Contact[];
   contactListSubs: Subscription;
   selectedContact: Contact;
@@ -35,10 +35,16 @@ export class UsersComponent implements OnInit {
     this.contactService.cast.subscribe(contact => this.contact = contact);
   }
 
+  updateContactList(): any {
+    this.contactService.addedContact.subscribe(contact => {
+      this.contactList.push(contact); console.log('new ' + this.contactList.length); });
+
+  }
+
   getContactList() {
     this.contactListSubs = this.contactService.getContacts(this.sender_id).
-      subscribe(res => { this.fetchContacts(res); }, console.error);
-  }
+      subscribe(res => { this.fetchContacts(res); this.updateContactList(); }, console.error);
+}
 
   fetchContacts(res: any): void {
     console.log(isNullOrUndefined(res));
