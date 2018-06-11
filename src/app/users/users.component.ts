@@ -23,12 +23,8 @@ export class UsersComponent implements OnInit {
   contact: Contact;
   sender_id: string;
 
-  ngOnInit() {
-    // this.route.paramMap.pipe(
-    //   switchMap((params: ParamMap) =>
-    //     this.sender_id = params.get('id'))
-    // );
-    console.log('from user component');
+  ngOnInit() {    
+    console.log('OnInit user component');
     this.authService.user.subscribe(user => this.sender_id = user.user_id);
     console.log(this.sender_id);
     this.getContactList();
@@ -36,8 +32,13 @@ export class UsersComponent implements OnInit {
   }
 
   updateContactList(): any {
+    console.log('now updating contact list');
     this.contactService.addedContact.subscribe(contact => {
-      this.contactList.push(contact); console.log('new ' + this.contactList.length); });
+      if(!isNullOrUndefined(contact.user_id)) {
+        this.contactList.push(contact); 
+      } 
+      // console.log('new ' + this.contactList.length); 
+    });
 
   }
 
